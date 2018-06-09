@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th = "http:/www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/jquery-ui.min.css}" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class ="container"> 
+		
+		<div class = "card-header">
+			<div th:text="${titulo}"></div>
+		</div>
+		<div class="card-body">
+		
+				
+				<form th:action="@{/agregar}" th:object="${cliente}" method="post">
+				  <div class="form-group">
+				    <label for="formGroupExampleInput">Nombres</label>
+				    <input th:field="*{nombres}" type="text" class="form-control" id="" placeholder="Ingresar Nombres">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="formGroupExampleInput">Apellidos</label>
+				    <input th:field="*{apellidos}" type="text" class="form-control" id="" placeholder="Ingresar Apellidos">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="formGroupExampleInput">DNI</label>
+				    <input th:field="*{dni}" type="text" class="form-control" id="" placeholder="Ingresar DNI">
+				  </div>
+				  
+				  <button type="submit" class="btn btn-primary">Agregar</button>
+				</form>
+			
+		
+		</div>
+	
+	</div>
+	
+</body>
+</html>

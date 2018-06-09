@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th = "http:/www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/css/jquery-ui.min.css}" />
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div class ="container"> 
+		
+		<div class = "card-header">
+			<div th:text="${titulo}"></div>
+		</div>
+		<div class="card-body">
+		
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col">id</th>
+			      <th scope="col">nombre</th>
+			      <th scope="col">correo</th>
+			      <th scope="col">Eliminar</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="cliente : ${clientes}">
+			      <td th:text ="${cliente.id}"></td>
+			      <td th:text ="${cliente.nombres}"></td>
+			      <td th:text ="${cliente.apellidos}"></td>
+			      <td th:text ="${cliente.dni}"></td>
+			  </tbody>
+			</table>
+			
+			<a class="btn btn-primary" th:href="@{/agregar}" role="button">Agregar</a>
+		
+		</div>
+	
+	</div>
+
+
+</body>
+</html>
