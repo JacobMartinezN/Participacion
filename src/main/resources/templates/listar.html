@@ -21,10 +21,13 @@
 			<table class="table table-striped">
 			  <thead>
 			    <tr>
-			      <th scope="col">id</th>
-			      <th scope="col">nombre</th>
-			      <th scope="col">correo</th>
-			      <th scope="col">Eliminar</th>
+			      <th scope="col">Id</th>
+			      <th scope="col">Nombre</th>
+			      <th scope="col">Correo</th>
+			      <th scope="col">DNI</th>
+			      <th scope="col">Agregar Cuenta</th>
+			      <th scope="col">Ver Cuenta</th>
+			      <th scope="col">Agregar Movimiento</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -33,10 +36,13 @@
 			      <td th:text ="${cliente.nombres}"></td>
 			      <td th:text ="${cliente.apellidos}"></td>
 			      <td th:text ="${cliente.dni}"></td>
+			      <td><a class="btn btn-primary" th:href="@{/agregarCuenta/} + ${cliente.id}">Agregar Cuenta</a></td>
+			      <td><a class="btn btn-success" th:href="@{/listarCuenta/} + ${cliente.id}">Ver Cuenta</a></td>
+			      <td><a class="btn btn-secondary" th:href="@{/agregarMovimiento/} + ${cliente.id}">Agregar Movimiento</a></td>
 			  </tbody>
 			</table>
 			
-			<a class="btn btn-primary" th:href="@{/agregar}" role="button">Agregar</a>
+			<a class="btn btn-warning" th:href="@{/agregar}" role="button">Agregar Cliente</a>
 		
 		</div>
 	
