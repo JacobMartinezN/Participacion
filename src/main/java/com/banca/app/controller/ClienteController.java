@@ -33,7 +33,7 @@ public class ClienteController {
 		
 	}
 
-	@GetMapping(value="agregar")
+	@GetMapping(value="/agregar")
 	public String agregar(Model model) {
 		
 		Cliente cliente=new Cliente();
@@ -44,7 +44,7 @@ public class ClienteController {
 		
 	}
 	
-	@PostMapping(value="agregar")
+	@PostMapping(value="/agregar")
 	public String guardar(Model model, @Valid Cliente cliente) {
 		
 		clienteService.save(cliente);

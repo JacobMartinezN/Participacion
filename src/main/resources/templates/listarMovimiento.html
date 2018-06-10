@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th = "http:/www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet"
 	th:href="@{/css/jquery-ui.min.css}" />
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
-	
-		
-		<div class = "row card-header">
+	<div class = " row card-header">
 		
 			<div class="col-1">
 				<div class="font-weight-bold" th:text="${titulo}"></div>
@@ -21,16 +19,20 @@
 			<div class="col-11">
 				<img src="https://vignette.wikia.nocookie.net/es.pokemon/images/7/74/Charizard_XY.gif/revision/latest?cb=20140807015236" alt="Charizard XY" class="lzyPlcHld lzyTrns lzyLoaded" data-image-key="Charizard_XY.gif" data-image-name="Charizard XY.gif" data-src="https://vignette.wikia.nocookie.net/es.pokemon/images/7/74/Charizard_XY.gif/revision/latest?cb=20140807015236" width="50" height="50" onload="if(typeof ImgLzy==='object'){ImgLzy.load(this)}">
 			</div>
+			
 		</div>
+
 		
-		<div class ="container"> 
-			<div class="card border-warning mb-3">
+		
+		<div class="container">
+		
+		<div class="card border-warning mb-3">
 						<div class="card-body text-warning">
 						
 						
 							<div class="form-group">
 						    	<label for="exampleInputPassword1">Cuenta</label>
-						    	<input th:value="${movimiento.cuenta.cliente.nombres} + ' ' + ${movimiento.cuenta.cliente.apellidos} " type="text" class="form-control" disabled='disabled'>
+						    	<input th:value="${cliente} " type="text" class="form-control" disabled='disabled'>
 						 	</div>
 						 	
 							<div class="form-group">
@@ -44,35 +46,36 @@
 						 	</div>
 						</div>
 					</div>
-		
 		<div class="card-body">
-		
-				
-				<form th:action="@{'/agregarMovimiento/' + ${idcuenta}}" th:object="${movimiento}" method="post">
-				  
-				  <div class="form-group">
-				    <label for="exampleFormControlSelect1">Tipo Movimiento </label>
-				    <select th:field="*{tipo}" class="form-control" id="">
-				      <option value ="Deposito">Deposito</option>
-				      <option value ="Retiro">Retiro</option>
-				     </select>
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="formGroupExampleInput">Monto</label>
-				    <input th:field="*{monto}" type="text" class="form-control" id="" placeholder="Ingresar Monto">
-				  </div>
-				  
-				
-				    
-				   
-				  <button type="submit" class="btn btn-primary">Agregar Movimiento</button>
-				  
-				</form>
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col">id</th>
+			      <th scope="col">tipo</th>
+			      <th scope="col">Monto</th>
+			      <th scope="col">Fecha</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="movimiento: ${movimientos}">
+			      <td th:text="${movimiento.id}"></td>
+			      <td th:text="${movimiento.tipo}"></td>
+			      <td th:text="${movimiento.monto}"></td>
+			      <td th:text="${movimiento.fecha}"></td>
+			    </tr>
+			  </tbody>
+			</table>
 			
-		
+			<div class="row container">
+				<div class="col">
+				<a th:href= "@{'/agregarMovimiento/' + ${idcuenta}}"class="btn btn-primary" role="button">Agregar</a>
+					
+			</div>
+			<div class="col">
+					<a th:href="@{'/listarCuenta/' + ${idcliente}}"  class="btn btn-primary" role="button">Volver</a>
+			</div>
+			</div>
 		</div>
-	
 	</div>
 </body>
 </html>

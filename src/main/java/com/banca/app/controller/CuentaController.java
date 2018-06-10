@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.banca.app.entity.Cliente;
 import com.banca.app.entity.Cuenta;
@@ -27,7 +26,7 @@ public class CuentaController {
 	private IClienteService clienteService;
 	
 	
-	@GetMapping(value="agregarCuenta/{clienteId}")
+	@GetMapping(value="/agregarCuenta/{clienteId}")
 	public String agregar(@PathVariable(value = "clienteId") Long clienteId, Model model) {
 		
 		Cliente cliente = clienteService.findById(clienteId);
@@ -40,24 +39,25 @@ public class CuentaController {
 		return "agregarCuenta";
 	}
 	
-	@PostMapping(value="agregarCuenta")
+	@PostMapping(value="/agregarCuenta")
 	public String guardar(Model model, @Valid Cuenta cuenta) {
 		
 		cuentaService.save(cuenta);
-		
-		
 		return "redirect:/listarCuenta/" + cuenta.getCliente().getId();
 		
 	}
 	
-	@GetMapping(value="listarCuenta/{clienteId}")
+	@GetMapping(value="/listarCuenta/{clienteId}")
 	public String listar(Model model,@PathVariable(value = "clienteId") Long clienteId) {
 		
 		
+		Cliente cliente = clienteService.findById(clienteId);
 		model.addAttribute("titulo", "Listar Cuentas");
 		model.addAttribute("cuentas", cuentaService.findCuentasByCliente(clienteId));
+		model.addAttribute("idcliente", clienteId);
+		model.addAttribute("nombre", cliente.getNombres()+ " " +cliente.getApellidos());
 		
-		return "listarCuenta" ;
+		return "listarcuenta" ;
 		
 	}
 

@@ -25,21 +25,43 @@ public class MovimientoController {
 	@Autowired
 	private ICuentaService cuentaService;
 	
-	@GetMapping(value="agregarMovimiento/{cuentaId}")
+	@GetMapping(value="/listarMovimiento/{cuentaId}")
+	public String listar(Model model,@PathVariable(value = "cuentaId") Long cuentaId) {
+		
+		
+		model.addAttribute("titulo", "Listar Movimiento");
+		model.addAttribute("movimientos", movimientoService.findMovimientosByCuenta(cuentaId));
+		model.addAttribute("idcuenta", cuentaId);
+		Cuenta cuenta = cuentaService.findById(cuentaId);
+		model.addAttribute("idcliente", cuenta.getCliente().getId());
+		model.addAttribute("cliente", cuenta.getCliente().getNombres() + ' ' + cuenta.getCliente().getApellidos());
+		model.addAttribute("ncuenta", cuenta.getNcuenta());
+		model.addAttribute("banco", cuenta.getBanco());
+		
+		return "listarMovimiento" ;
+		
+	}
+
+
+	@GetMapping(value="/agregarMovimiento/{cuentaId}")
 	public String agregar(@PathVariable(value = "cuentaId") Long cuentaId, Model model) {
 		
-		Cuenta cuenta = cuentaService.findById(cuentaId);
+	
 		Movimiento movimiento = new Movimiento();
-		movimiento.setCuenta(cuenta);
-		
+		movimiento.setCuenta(cuentaService.findById(cuentaId));
 		model.addAttribute("titulo", "Agregar Movimiento");
 		model.addAttribute("movimiento", movimiento);
+		model.addAttribute("idcuenta", cuentaId);
+		model.addAttribute("ncuenta", movimiento.getCuenta().getNcuenta());
+		model.addAttribute("banco", movimiento.getCuenta().getBanco());
 		return "agregarMovimiento";
 	}
 	
-	@PostMapping(value="agregarMovimiento")
-	public String guardar(Model model, @Valid Movimiento movimiento) {
+	@PostMapping(value="/agregarMovimiento/{cuentaId}")
+	public String guardar(Model model, @Valid Movimiento movimiento,@PathVariable(value = "cuentaId") Long cuentaId) {
+		Cuenta cuenta = cuentaService.findById(cuentaId);
+		movimiento.setCuenta(cuenta);
 		movimientoService.save(movimiento);
-		return "redirect:/listar";
+		return "redirect:/listarMovimiento/" + cuentaId;
 	}
 }

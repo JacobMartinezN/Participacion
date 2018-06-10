@@ -30,4 +30,10 @@ public class MovimientoService implements IMovimientoService {
 		return movimientoDao.findAll();
 	}
 
+	@Override
+	public List<Movimiento> findMovimientosByCuenta(Long id) {
+		// TODO Auto-generated method stub
+		return movimientoDao.findMovimientosByCuenta(id);
+	}
+
 }

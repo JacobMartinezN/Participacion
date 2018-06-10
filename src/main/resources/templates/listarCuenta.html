@@ -10,21 +10,32 @@
 </head>
 <body>
 	
-	<div class ="container"> 
+	
 		
-		<div class = "card-header">
-			<div th:text="${titulo}"></div>
+		
+		<div class = "row card-header">
+		
+			<div class="col-1">
+				<div class="font-weight-bold" th:text="${titulo}"></div>
+			</div>
+			
+			<div class="col-11">
+				<img src="https://vignette.wikia.nocookie.net/es.pokemon/images/7/74/Charizard_XY.gif/revision/latest?cb=20140807015236" alt="Charizard XY" class="lzyPlcHld lzyTrns lzyLoaded" data-image-key="Charizard_XY.gif" data-image-name="Charizard XY.gif" data-src="https://vignette.wikia.nocookie.net/es.pokemon/images/7/74/Charizard_XY.gif/revision/latest?cb=20140807015236" width="50" height="50" onload="if(typeof ImgLzy==='object'){ImgLzy.load(this)}">
+			</div>
 		</div>
+		
+		<div class ="container" style="margin-top: 20px"> 
 		
 		<div class="card border-warning mb-3">
 						<div class="card-body text-warning">
 							<div class="form-group">
 						    	<label for="exampleInputPassword1">Cliente</label>
-						    	<input th:value="${cuenta.cliente.nombres} + ' ' + ${cuenta.cliente.apellidos} " type="text" class="form-control" disabled='disabled'>
+						    	<input th:value="${nombre} " type="text" class="form-control" disabled='disabled'>
 						 	</div>
 						</div>
 					</div>
 					
+	
 		<div class="card-body">
 		
 			<table class="table table-striped">
@@ -43,12 +54,19 @@
 			      <td th:text ="${cuenta.banco}"></td>
 			      <td th:text ="${cuenta.ncuenta}"></td>
 			      <td th:text ="${cuenta.saldo}"></td>
-			      <td><a class="btn btn-secondary" th:href="@{/agregarMovimiento/} + ${cuenta.id}">Agregar Movimiento</a></td>
+			      <td><a class="btn btn-secondary" th:href="@{/listarMovimiento/} + ${cuenta.id}">Listar Movimientos</a></td>
 			      
 			  </tbody>
 			</table>
 			
-					<a th:href= "@{/listar}"class="btn btn-primary" role="button">Home</a>
+			<div class="row container">
+				<div class="col">
+					<a th:href= "@{'/agregarCuenta/' + ${idcliente}}"class="btn btn-primary" role="button">Agregar Cuenta</a>	
+				</div>
+				<div class="col">
+					<a th:href= "@{/listar}"class="btn btn-primary" role="button">Volver</a>
+				</div>
+			</div>
 		
 			
 			
