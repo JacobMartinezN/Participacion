@@ -1,5 +1,12 @@
 package com.banca.app.dao;
 
-public interface IMovimientoDao {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.banca.app.entity.Movimiento;
+
+@Repository
+public interface IMovimientoDao extends JpaRepository<Movimiento, Long>{
+
+	
 }

@@ -15,6 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="movimiento")
@@ -33,7 +35,6 @@ public class Movimiento implements Serializable{
 	private double monto;
 	
 	@Temporal(TemporalType.DATE)
-	@NotNull
 	private Date fecha;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

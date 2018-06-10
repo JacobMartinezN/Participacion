@@ -18,9 +18,19 @@
 		</div>
 		<div class="card-body">
 		
+		<div class="card border-warning mb-3">
+						<div class="card-body text-warning">
+							<div class="form-group">
+						    	<label for="exampleInputPassword1">Cliente</label>
+						    	<input th:value="${cuenta.cliente.nombres} + ' ' + ${cuenta.cliente.apellidos} " type="text" class="form-control" disabled='disabled'>
+						 	</div>
+						</div>
+					</div>
 			<form th:action="@{/agregarCuenta}" th:object="${cuenta}" method="post">
 
-
+					
+				
+					
 				  <div class="form-group">
 				    <label for="exampleFormControlSelect1">Banco</label>
 				    <select th:field="*{banco}" class="form-control" id="">
@@ -32,7 +42,7 @@
 				     </select>
 				  </div>
 				
-				    <div class="form-group">
+				   <div class="form-group">
 				    <label for="exampleInputPassword1">Numero de Cuenta</label>
 				    <input th:field="*{ncuenta}" type="text" class="form-control" id="" placeholder="Ingresar numero de cuenta">
 				  </div>
@@ -40,7 +50,7 @@
 				    <label for="exampleInputPassword1">Saldo</label>
 				    <input th:field="*{saldo}" type="text" class="form-control" id="" placeholder="Ingresar saldo">
 				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="submit" class="btn btn-primary">Agregar Cuenta</button>
 			</form>
 							
 		

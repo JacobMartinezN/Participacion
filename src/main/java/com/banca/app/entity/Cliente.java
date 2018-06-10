@@ -32,6 +32,9 @@ public class Cliente implements Serializable{
 	@NotNull
 	private String dni;
 	
+	@NotNull
+	private String contrasenia;
+	
 	@OneToMany(mappedBy="cliente" , fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Cuenta> cuentas;
 
@@ -67,6 +70,14 @@ public class Cliente implements Serializable{
 		this.dni = dni;
 	}
 
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
 	public List<Cuenta> getCuentas() {
 		return cuentas;
 	}
@@ -74,5 +85,7 @@ public class Cliente implements Serializable{
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+
+	
 
 }
