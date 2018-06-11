@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.banca.app.dao.ICuentaDao;
 import com.banca.app.entity.Cuenta;
 
+
 @Service
 public class CuentaService implements ICuentaService {
 
@@ -42,5 +43,7 @@ public class CuentaService implements ICuentaService {
 		// TODO Auto-generated method stub
 		return cuentaDao.findCuentasByCliente(id);
 	}
+	
+	
 
 }

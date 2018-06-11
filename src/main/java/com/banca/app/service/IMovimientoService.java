@@ -2,8 +2,6 @@ package com.banca.app.service;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-
 import com.banca.app.entity.Movimiento;
 
 public interface IMovimientoService {
@@ -14,4 +12,6 @@ public interface IMovimientoService {
 	public List<Movimiento> findAll();
 	
 	public List<Movimiento> findMovimientosByCuenta(Long id);
+	
+	public void actualizarSaldo(Movimiento movimiento);
 }
